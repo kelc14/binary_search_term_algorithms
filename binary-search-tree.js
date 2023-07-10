@@ -110,22 +110,87 @@ class BinarySearchTree {
   /** dfsPreOrder(): Traverse the array using pre-order DFS.
    * Return an array of visited nodes. */
 
-  dfsPreOrder() {}
+  dfsPreOrder() {
+    let values = [];
+    if (!this.root) return values;
+
+    let nodesToVisit = [this.root];
+    while (nodesToVisit.length) {
+      nodesToVisit.forEach((el, i) => {
+        nodesToVisit.splice(i, 1);
+
+        if (el !== null) {
+          values.push(el.val);
+          nodesToVisit.unshift(el.left);
+          nodesToVisit.unshift(el.right);
+        }
+      });
+    }
+    return values;
+  }
 
   /** dfsInOrder(): Traverse the array using in-order DFS.
    * Return an array of visited nodes. */
 
-  dfsInOrder() {}
+  dfsInOrder() {
+    let values = [];
+    if (!this.root) return values;
+
+    let nodesToVisit = [this.root];
+    while (nodesToVisit.length) {
+      nodesToVisit.forEach((el, i) => {
+        if (el !== null) {
+          values.push(el.val);
+          nodesToVisit.push(el.right);
+          nodesToVisit.push(el.left);
+        }
+        nodesToVisit.splice(i, 1);
+      });
+    }
+    return values;
+  }
 
   /** dfsPostOrder(): Traverse the array using post-order DFS.
    * Return an array of visited nodes. */
+  dfsPostOrder() {
+    let values = [];
+    if (!this.root) return values;
 
-  dfsPostOrder() {}
+    let nodesToVisit = [this.root];
+    while (nodesToVisit.length) {
+      nodesToVisit.forEach((el, i) => {
+        nodesToVisit.splice(i, 1);
+
+        if (el !== null) {
+          values.unshift(el.val);
+          nodesToVisit.unshift(el.left);
+          nodesToVisit.unshift(el.right);
+        }
+      });
+    }
+    return values;
+  }
 
   /** bfs(): Traverse the array using BFS.
    * Return an array of visited nodes. */
 
-  bfs() {}
+  bfs() {
+    let values = [];
+    if (!this.root) return values;
+
+    let nodesToVisit = [this.root];
+    while (nodesToVisit.length) {
+      nodesToVisit.forEach((el, i) => {
+        if (el !== null) {
+          values.push(el.val);
+          nodesToVisit.push(el.right);
+          nodesToVisit.push(el.left);
+        }
+        nodesToVisit.splice(i, 1);
+      });
+    }
+    return values;
+  }
 
   /** Further Study!
    * remove(val): Removes a node in the BST with the value val.
