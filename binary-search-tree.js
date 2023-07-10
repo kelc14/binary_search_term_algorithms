@@ -169,18 +169,20 @@ class BinarySearchTree {
 
   bfs() {
     let values = [];
-    if (!this.root) return values;
+    if (!this.root) {
+      return values;
+    } else {
+      values = [this.root.val];
+    }
 
-    let nodesToVisit = [this.root];
-    while (nodesToVisit.length) {
-      nodesToVisit.forEach((el, i) => {
-        if (el !== null) {
-          values.push(el.val);
-          nodesToVisit.push(el.right);
-          nodesToVisit.push(el.left);
-        }
-        nodesToVisit.splice(i, 1);
-      });
+    let children = [this.root.left, this.root.right];
+    while (children.length) {
+      let curr = children.shift();
+      if (curr !== null) {
+        values.push(curr.val);
+        if (curr.left) children.push(curr.left);
+        if (curr.right) children.push(curr.right);
+      }
     }
     return values;
   }
