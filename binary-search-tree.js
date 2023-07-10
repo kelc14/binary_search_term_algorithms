@@ -120,7 +120,7 @@ class BinarySearchTree {
         nodesToVisit.splice(i, 1);
 
         if (el !== null) {
-          values.push(el.val);
+          values.unshift(el.val);
           nodesToVisit.unshift(el.left);
           nodesToVisit.unshift(el.right);
         }
@@ -136,17 +136,14 @@ class BinarySearchTree {
     let values = [];
     if (!this.root) return values;
 
-    let nodesToVisit = [this.root];
-    while (nodesToVisit.length) {
-      nodesToVisit.forEach((el, i) => {
-        if (el !== null) {
-          values.push(el.val);
-          nodesToVisit.push(el.right);
-          nodesToVisit.push(el.left);
-        }
-        nodesToVisit.splice(i, 1);
-      });
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      values.push(node.val);
+      if (node.right) traverse(node.right);
     }
+
+    traverse(this.root);
+
     return values;
   }
 
