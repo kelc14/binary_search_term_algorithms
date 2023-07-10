@@ -70,12 +70,42 @@ class BinarySearchTree {
   /** find(val): search the tree for a node with value val.
    * return the node, if found; else undefined. Uses iteration. */
 
-  find(val) {}
+  find(val) {
+    if (this.root === null) return;
+
+    let current = this.root;
+
+    while (current) {
+      if (val > current.val) {
+        // set new current as current.right
+
+        current = current.right;
+      } else if (val < current.val) {
+        // set new current as current.left
+        current = current.left;
+      } else {
+        return current;
+      }
+    }
+    return;
+  }
 
   /** findRecursively(val): search the tree for a node with value val.
    * return the node, if found; else undefined. Uses recursion. */
 
-  findRecursively(val) {}
+  findRecursively(val, node = this.root) {
+    if (node === null) return;
+
+    if (val > node.val) {
+      // set new current as node.right
+      return this.findRecursively(val, node.right);
+    } else if (val < node.val) {
+      // set new current as node.left
+      return this.findRecursively(val, node.left);
+    } else {
+      return node;
+    }
+  }
 
   /** dfsPreOrder(): Traverse the array using pre-order DFS.
    * Return an array of visited nodes. */
