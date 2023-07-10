@@ -15,80 +15,104 @@ class BinarySearchTree {
    * Returns the tree. Uses iteration. */
 
   insert(val) {
+    const newNode = new Node(val);
+    if (!this.root) {
+      this.root = newNode;
+      return this;
+    }
 
+    let current = this.root;
+
+    while (current) {
+      if (val > current.val) {
+        // set new current as current.right if it exist,s otherwise set as node
+        if (current.right === null) {
+          current.right = newNode;
+          return this;
+        }
+
+        current = current.right;
+      } else {
+        // set new current as current.left if it exist,s otherwise set as node
+        if (current.left === null) {
+          current.left = newNode;
+          return this;
+        }
+        current = current.left;
+      }
+    }
   }
 
   /** insertRecursively(val): insert a new node into the BST with value val.
    * Returns the tree. Uses recursion. */
 
-  insertRecursively(val) {
+  insertRecursively(val, node = this.root) {
+    if (!this.root) {
+      this.root = new Node(val);
+      return this;
+    }
 
+    if (val > node.val) {
+      if (node.right === null) {
+        node.right = new Node(val);
+        return this;
+      }
+      return this.insertRecursively(val, node.right);
+    } else {
+      if (node.left === null) {
+        node.left = new Node(val);
+        return this;
+      }
+      return this.insertRecursively(val, node.left);
+    }
   }
 
   /** find(val): search the tree for a node with value val.
    * return the node, if found; else undefined. Uses iteration. */
 
-  find(val) {
-
-  }
+  find(val) {}
 
   /** findRecursively(val): search the tree for a node with value val.
    * return the node, if found; else undefined. Uses recursion. */
 
-  findRecursively(val) {
-
-  }
+  findRecursively(val) {}
 
   /** dfsPreOrder(): Traverse the array using pre-order DFS.
    * Return an array of visited nodes. */
 
-  dfsPreOrder() {
-
-  }
+  dfsPreOrder() {}
 
   /** dfsInOrder(): Traverse the array using in-order DFS.
    * Return an array of visited nodes. */
 
-  dfsInOrder() {
-
-  }
+  dfsInOrder() {}
 
   /** dfsPostOrder(): Traverse the array using post-order DFS.
    * Return an array of visited nodes. */
 
-  dfsPostOrder() {
-
-  }
+  dfsPostOrder() {}
 
   /** bfs(): Traverse the array using BFS.
    * Return an array of visited nodes. */
 
-  bfs() {
-
-  }
+  bfs() {}
 
   /** Further Study!
    * remove(val): Removes a node in the BST with the value val.
    * Returns the removed node. */
 
-  remove(val) {
-
-  }
+  remove(val) {}
 
   /** Further Study!
    * isBalanced(): Returns true if the BST is balanced, false otherwise. */
 
-  isBalanced() {
-
-  }
+  isBalanced() {}
 
   /** Further Study!
    * findSecondHighest(): Find the second highest value in the BST, if it exists.
    * Otherwise return undefined. */
 
-  findSecondHighest() {
-    
-  }
+  findSecondHighest() {}
 }
 
 module.exports = BinarySearchTree;
