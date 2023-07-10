@@ -114,18 +114,14 @@ class BinarySearchTree {
     let values = [];
     if (!this.root) return values;
 
-    let nodesToVisit = [this.root];
-    while (nodesToVisit.length) {
-      nodesToVisit.forEach((el, i) => {
-        nodesToVisit.splice(i, 1);
-
-        if (el !== null) {
-          values.unshift(el.val);
-          nodesToVisit.unshift(el.left);
-          nodesToVisit.unshift(el.right);
-        }
-      });
+    function traverse(node) {
+      values.push(node.val);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
     }
+
+    traverse(this.root);
+
     return values;
   }
 
